@@ -17,6 +17,8 @@ public class Dama {
         this.coluna = coluna;
         this.black = black;
         if(black) {
+        	this.representacao = 'P';
+        } else {
         	this.representacao = 'B';
         }
     }
