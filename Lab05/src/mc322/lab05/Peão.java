@@ -1,17 +1,27 @@
 package mc322.lab05;
 
 public class Peão {
-	int i,j;
-	char tipo;
-	boolean preto;
-	Peão(int i, int j, boolean preto){
-		this.i = i;
-		this.j = j;
-		this.preto = preto;
-		if(preto) {
-			this.tipo = 'p';
-		} else {
-			this.tipo = 'b';
-		}
-	}
+
+    int diagonalDireita;
+    int diagonalEsquerda;
+    int linha ,coluna;
+    boolean black ;
+    char representacao;
+    Peão(int diagonalD, int diagonalE, int coluna, int linha, boolean black ){
+        this.diagonalDireita = diagonalD;
+        this.diagonalEsquerda = diagonalE;
+        this.linha = linha;
+        this.coluna = coluna;
+        this.black = black;
+        if(black) {
+        	this.representacao = 'p';
+        } else {
+        	this.representacao = 'b';
+        }
+    }
+
+    public boolean mover(int iOrigem, int jOrigem, int iDestino, int jDestino){
+        continue;
+    }
+
 }

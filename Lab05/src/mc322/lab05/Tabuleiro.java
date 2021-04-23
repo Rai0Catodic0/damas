@@ -41,12 +41,12 @@ public class Tabuleiro {
 					representacao[indice] = '-';
 					indice++;
 				} else if(peoes[i][j]!=null) {
-					System.out.print(peoes[i][j].tipo);
-					representacao[indice] = peoes[i][j].tipo;
+					System.out.print(peoes[i][j].representacao);
+					representacao[indice] = peoes[i][j].representacao;
 					indice++;
 				} else if(damas[i][j]!=null) {
-					System.out.print(damas[i][j].tipo);
-					representacao[indice] = damas[i][j].tipo;
+					System.out.print(damas[i][j].representacao);
+					representacao[indice] = damas[i][j].representacao;
 					indice++;
 				}
 			}
