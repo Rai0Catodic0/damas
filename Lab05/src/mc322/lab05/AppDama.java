@@ -5,12 +5,14 @@ public class AppDama {
 		//CSVReader csv = new CSVReader();
 	    //csv.setDataSource("");
 	    //String commands[] = csv.requestCommands();
-		String commands[] = {"4c:5e","3d:4e"};
+		//String commands[] = {"4c:5e","3d:4e"};
 		//executaJogo(commands);
-		Tabuleiro dama = new Tabuleiro();
-		dama.Apresentar();
+		Dama p = new Dama(1,5,true);
+		char[] vetor = {'-','-','-','-','X','-'};
+		System.out.println(p.mover(7,0, 1, 5, vetor));
+
 	}
-	
+
 	public static void executaJogo(String commands[]) {
 		Tabuleiro dama = new Tabuleiro();
 		int n = commands.length;
@@ -25,5 +27,5 @@ public class AppDama {
 			estados[i] = dama.Apresentar();
 		}
 	}
-	
+
 }
