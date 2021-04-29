@@ -5,8 +5,12 @@ public class AppDama {
 		//CSVReader csv = new CSVReader();
 	    //csv.setDataSource("");
 	    //String commands[] = csv.requestCommands();
-		String commands[] = {"4c:5e","3d:4e"};
-		executaJogo(commands);
+		//String commands[] = {"4c:5e","3d:4e"};
+		//executaJogo(commands);
+		Dama p = new Dama(1,5,true);
+		char[] vetor = {'-','-','-','-','X','-'};
+		System.out.println(p.mover(7,0, 1, 5, vetor));
+		
 	}
 	
 	public static void executaJogo(String commands[]) {
