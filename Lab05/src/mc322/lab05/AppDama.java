@@ -6,12 +6,15 @@ public class AppDama {
 	    //csv.setDataSource("");
 	    //String commands[] = csv.requestCommands();
 		String commands[] = {"4c:5e","3d:4e"};
-		executaJogo(commands);
+		//executaJogo(commands);
+		Tabuleiro dama = new Tabuleiro();
+		dama.Apresentar();
 	}
 	
 	public static void executaJogo(String commands[]) {
 		Tabuleiro dama = new Tabuleiro();
 		int n = commands.length;
+		String[] estados = new String[n];
 		System.out.printf("Tabuleiro Inicial\n");
 		dama.Apresentar();
 		for(int i = 0; i<n; i++) {
@@ -19,6 +22,7 @@ public class AppDama {
 			System.out.println();
 			System.out.print("Source: "+commands[i].charAt(0)+commands[i].charAt(1)+"\n");
 			System.out.print("Target: "+commands[i].charAt(3)+commands[i].charAt(4)+"\n");
+			estados[i] = dama.Apresentar();
 		}
 	}
 	
