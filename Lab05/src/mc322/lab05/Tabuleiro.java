@@ -29,13 +29,34 @@ public class Tabuleiro {
 	}
 
 	String Apresentar() {
+		int indice = 0;
+		char[] representacao = new char[72];
+		char[] numeros = {'8','7','6','5','4','3','2','1'};
+		char[] letras = {'a','b','c','d','e','f','g','h'};
 		for(int i=0;i<8;i++) {
+			System.out.print(numeros[i]);
 			for(int j = 0; j<8; j++) {
-				//System.out.print(); -> printar atributo do peão
-				//fazer lógica para ver se é dama ou peão e printar espaço só se 
-				//os dois estão vazios
+				if(peoes[i][j]==null && damas[i][j]==null) {
+					System.out.print("-");
+					representacao[indice] = '-';
+					indice++;
+				} else if(peoes[i][j]!=null) {
+					System.out.print(peoes[i][j].representacao);
+					representacao[indice] = peoes[i][j].representacao;
+					indice++;
+				} else if(damas[i][j]!=null) {
+					System.out.print(damas[i][j].representacao);
+					representacao[indice] = damas[i][j].representacao;
+					indice++;
+				}
 			}
+			System.out.print("\n");
+			representacao[indice] = '\n';
+			indice++;
 		}
+		System.out.print(' ');
+		System.out.println(letras);
+		return new String(representacao);
 	}
 
 	void Mover(String comando) {
@@ -44,6 +65,9 @@ public class Tabuleiro {
 		int iOrigem = 55-comando.charAt(1);
 		int jDestino = comando.charAt(3)-97;
 		int iDestino = 55-comando.charAt(4);
+		
+		//aqui pedimos a validação do movimento para a peça envolvida
+		//fazemos o movimento e o caminho caso seja válido
 		
 	}
 
