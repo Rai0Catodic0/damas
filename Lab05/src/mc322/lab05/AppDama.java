@@ -7,9 +7,14 @@ public class AppDama {
 	    //String commands[] = csv.requestCommands();
 		//String commands[] = {"4c:5e","3d:4e"};
 		//executaJogo(commands);
-		Dama p = new Dama(1,5,true);
-		char[] vetor = {'-','-','-','-','X','-'};
-		System.out.println(p.mover(7,0, 1, 5, vetor));
+		//Dama p = new Dama(1,5,true);
+		//char[] vetor = {'-','-','-','-','X','-'};
+		//System.out.println(p.mover(7,0, 1, 5, vetor));
+		
+		Tabuleiro tab = new Tabuleiro();
+		tab.Apresentar();
+		tab.Mover("g3:e5");
+		tab.Apresentar();
 
 	}
 

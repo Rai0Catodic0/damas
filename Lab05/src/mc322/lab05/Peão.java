@@ -1,13 +1,8 @@
 package mc322.lab05;
 
-public class Peão {
-    int linha ,coluna;
-    boolean black ;
-    char representacao;
+public class Peão extends Peça {
     Peão(int linha, int coluna, boolean black ){
-        this.linha = linha;
-        this.coluna = coluna;
-        this.black = black;
+       super(linha, coluna, black );
         if(black){
           representacao = 'p';
         } else {
