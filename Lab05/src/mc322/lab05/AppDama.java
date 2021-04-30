@@ -3,7 +3,7 @@ package mc322.lab05;
 public class AppDama {
 	public static void main(String args[]) {
 		//CSVReader csv = new CSVReader();
-	    //csv.setDataSource("");
+	    //csv.setDataSource("/home/jessica/damas/Lab05/src/db/teste02.csv");
 	    //String commands[] = csv.requestCommands();
 		//String commands[] = {"4c:5e","3d:4e"};
 		//executaJogo(commands);
@@ -13,8 +13,8 @@ public class AppDama {
 		
 		Tabuleiro tab = new Tabuleiro();
 		tab.Apresentar();
-		tab.Mover("g3:e5");
-		tab.Apresentar();
+		//tab.Mover("c3:b4");
+		//tab.Apresentar();
 
 	}
 

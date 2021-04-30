@@ -12,6 +12,7 @@ public class Dama extends Peça {
 
     public int[] Mover(int iOrigem,int jOrigem, int iDestino,int jDestino,char[] caminho) {
     	int retorno[] = new int [2];
+    	retorno[1] = -1;
     	boolean ehValido = true;
     	int len;
     	if(iOrigem-iDestino>0) {
