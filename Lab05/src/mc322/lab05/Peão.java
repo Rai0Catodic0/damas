@@ -1,3 +1,5 @@
+package mc322.lab05;
+
 public class Peão extends Peça {
     Peão(int linha, int coluna, boolean black ){
        super(linha, coluna, black );
