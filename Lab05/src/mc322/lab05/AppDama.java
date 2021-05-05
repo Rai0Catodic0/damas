@@ -23,8 +23,8 @@ public class AppDama {
 			estados[i] = dama.Apresentar();
 		}
 		String estadoFinalTabuleiro = estados[n-1];
-		///transformar em vetor de string no formato (a1_,a2b....etc).
-		///escrever no csv com expor state
+		///transformar em vetor de string no formato (a1_,a2b....etc) e escrever no csv
+		//String teste[3] = {"a1_","a2p", "a3B"};
 		return estados;
 	}
 

@@ -1,4 +1,4 @@
-package mc322.lab05;
+package mc322.lab05; 
 
 public class Peão extends Peça {
     Peão(int linha, int coluna, boolean black ){
@@ -9,21 +9,17 @@ public class Peão extends Peça {
           representacao = 'b';
         }
     }
-	public int[] Mover(int iOrigem, int jOrigem, int iDestino, int jDestino, char[] caminho){
+    public int[] Mover(int iOrigem, int jOrigem, int iDestino, int jDestino, char[] caminho){
     	boolean ehValido = true;
     	int retorno[] = new int[2];
     	retorno[1] = -1;
     	int len;
     	len = caminho.length;
     	int obstaculos = 0;
-    	//System.out.println("ddddddddddddddddddddd "+len);
     	for(int i = 0; i<len;i++){
-    		//System.out.println(caminho[i]);
-    		//System.out.println(i);
     		if(caminho[i]=='X'){
     			retorno[1]=i;
     			obstaculos++;
-				//System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  "+i);
     			continue;
 			}
     		else if(caminho[i]=='0'){
@@ -41,7 +37,6 @@ public class Peão extends Peça {
     	else{
     		retorno[0]=0;
 		}
-    	//System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb  "+retorno[1]);
     	return retorno;
     }
 
