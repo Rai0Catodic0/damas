@@ -9,32 +9,37 @@ public class Peão extends Peça {
           representacao = 'b';
         }
     }
-
-    public boolean mover(int iOrigem, int jOrigem, int iDestino, int jDestino, char[] caminho){
-        boolean ehValido = true;
-        if(linha != iOrigem || coluna != jOrigem) {
-        	ehValido = false;
-        }
-    	int len = (iDestino - iOrigem);
-    	int peca = 0;
-    	for(int i=0; i<len;i++) {
-    		if(caminho[i] != '-') {
-    			peca++;
-    			if(peca>=2) {
-    				break;
-    			}
+	public int[] Mover(int iOrigem, int jOrigem, int iDestino, int jDestino, char[] caminho){
+    	boolean ehValido = true;
+    	int retorno[] = new int[2];
+    	retorno[1] = -1;
+    	int len;
+    	len = iDestino-iOrigem;
+    	int obstaculos = 0;
+    	for(int i = 0; i<len;i++){
+    		if(caminho[i]=='X'){
+    			retorno[1]=i;
+    			obstaculos++;
+				System.out.println("captura peao");
     			continue;
-    		}
-    		if(caminho[i]=='0') {
-    			return false;
-    		}
-    		peca = 0;
-    	}
-    	if(peca>=1) {
+			}
+    		else if(caminho[i]=='0'){
+    			ehValido = false;
+    			break;
+			}
+    		obstaculos = 0;
+		}
+    	if(obstaculos != 0){
     		ehValido = false;
-    	}
-
-    	return ehValido;
+		}
+    	if(ehValido){
+    		retorno[0]=1;
+		}
+    	else{
+    		retorno[0]=0;
+		}
+    	return retorno;
     }
+
 
 }
