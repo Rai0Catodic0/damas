@@ -1,5 +1,3 @@
-package mc322.lab05;
-
 public class Peão extends Peça {
     Peão(int linha, int coluna, boolean black ){
        super(linha, coluna, black );
@@ -9,12 +7,12 @@ public class Peão extends Peça {
           representacao = 'b';
         }
     }
-	public int[] Mover(int iOrigem, int jOrigem, int iDestino, int jDestino, char[] caminho){
+    public int[] Mover(int iOrigem, int jOrigem, int iDestino, int jDestino, char[] caminho){
     	boolean ehValido = true;
     	int retorno[] = new int[2];
     	retorno[1] = -1;
     	int len;
-    	len = iDestino-iOrigem;
+    	len = retorno.length-1;
     	int obstaculos = 0;
     	for(int i = 0; i<len;i++){
     		if(caminho[i]=='X'){
