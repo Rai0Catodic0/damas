@@ -2,24 +2,15 @@ package mc322.lab05;
 
 public class AppDama {
 	public static void main(String args[]) {
-		//CSVReader csv = new CSVReader();
-	    //csv.setDataSource("/home/jessica/damas/Lab05/src/db/teste02.csv");
-	    //String commands[] = csv.requestCommands();
-		//String commands[] = {"4c:5e","3d:4e"};
-		//executaJogo(commands);
-		//Dama p = new Dama(1,5,true);
-		//char[] vetor = {'-','-','-','-','X','-'};
-		//System.out.println(p.mover(7,0, 1, 5, vetor));
-		
-		Tabuleiro tab = new Tabuleiro();
-		tab.Apresentar();
-		//tab.Mover("c3:b4");
-		//tab.Apresentar();
-
+		executaJogo(args[0], args[1]);
 	}
 
-	public static void executaJogo(String commands[]) {
+	public static String[] executaJogo(String caminhoEntrada, String caminhoSaida) {
+		CSVReader csv = new CSVReader();
+	    csv.setDataSource(caminhoEntrada);
+	    csv.setDataExport(caminhoSaida);
 		Tabuleiro dama = new Tabuleiro();
+		String commands[] = csv.requestCommands();
 		int n = commands.length;
 		String[] estados = new String[n];
 		System.out.printf("Tabuleiro Inicial\n");
@@ -31,6 +22,10 @@ public class AppDama {
 			System.out.print("Target: "+commands[i].charAt(3)+commands[i].charAt(4)+"\n");
 			estados[i] = dama.Apresentar();
 		}
+		String estadoFinalTabuleiro = estados[n-1];
+		///transformar em vetor de string no formato (a1_,a2b....etc).
+		///escrever no csv com expor state
+		return estados;
 	}
 
 }

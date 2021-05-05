@@ -53,6 +53,10 @@ public class Tabuleiro {
 		System.out.println(letras);
 		return new String(representacao);
 	}
+	
+	void Promocao(int i, int j) {
+		tabuleiro[i][j] = new Dama(i, j, tabuleiro[i][j].black);
+	}
 
 	void Mover(String comando) {
 		
@@ -62,14 +66,14 @@ public class Tabuleiro {
 		int jDestino = comando.charAt(3)-97;
 		int iDestino = 56-comando.charAt(4);
 		
-		System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
-		
 		int tamanho = Math.abs(iOrigem-iDestino); //tamanho do caminho
 		int count = 0;
 		char caminho[] = new char[tamanho];
 		
-		if(tabuleiro[iOrigem][iDestino]!=null) {
+		if(tabuleiro[iOrigem][jOrigem]!=null) {
 			if(jOrigem<jDestino && iOrigem>iDestino) {
+				//System.out.println("estou aqui");
+				//System.out.println(comando);
 				int i = iOrigem-1;
 				int j = jOrigem + 1;
 				//aumenta j e diminui i
@@ -88,10 +92,13 @@ public class Tabuleiro {
 					i--;
 				}
 				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
+				//System.out.println(new String(caminho));
 				if(ehValido[0]==1) {
 					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
 					tabuleiro[iOrigem][jOrigem]= null;
+					//System.out.println(ehValido[1]);
 					if(ehValido[1]!=-1) { //peça capturada
+						//System.out.println("vou capturar ");
 						tabuleiro[iOrigem-ehValido[1]-1][jOrigem+ehValido[1]+1] = null;
 					}
 				}
@@ -165,18 +172,26 @@ public class Tabuleiro {
 					j--;
 					i--;
 				}
-				System.out.println("helloooo");
 				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
 				if(ehValido[0]==1) {
 					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
 					tabuleiro[iOrigem][jOrigem]= null;
+					
 					if(ehValido[1]!=-1) { //peça capturada
 						tabuleiro[iOrigem-ehValido[1]-1][jOrigem-ehValido[1]-1] = null;
 					}
 				}
 			}
+			if(tabuleiro[iDestino][jDestino].representacao=='b' && iDestino==0) {
+				Promocao(iDestino, jDestino);
+			} else if(tabuleiro[iDestino][jDestino].representacao=='p' && iDestino==7) {
+				Promocao(iDestino, jDestino);
+			}
 		} else {
 			//não há peça na casa, o movimento é inválido
+			System.out.println("é null");
+			System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
+			System.out.println(tabuleiro[iOrigem][iDestino]);
 		}
 		
 		//System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
