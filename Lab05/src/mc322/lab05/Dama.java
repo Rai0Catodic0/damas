@@ -1,13 +1,8 @@
 package mc322.lab05;
 
-public class Dama {
-    int linha ,coluna;
-    boolean black ;
-    char representacao;
+public class Dama extends Peça {
     Dama( int linha, int coluna, boolean black ){
-        this.linha = linha;
-        this.coluna = coluna;
-        this.black = black;
+    	super(linha, coluna, black);
         if(black){
           representacao = 'P';
         } else {
@@ -15,7 +10,9 @@ public class Dama {
         }
     }
 
-    public boolean mover(int iOrigem,int jOrigem, int iDestino,int jDestino,char[] caminho) {
+    public int[] Mover(int iOrigem,int jOrigem, int iDestino,int jDestino,char[] caminho) {
+    	int retorno[] = new int [2];
+    	retorno[1] = -1;
     	boolean ehValido = true;
     	int len;
     	if(iOrigem-iDestino>0) {
@@ -28,6 +25,7 @@ public class Dama {
     	int obstaculos=0;
     	for(int i = 0;i<len;i++) {
     		if(caminho[i]=='X') {
+    			retorno[1]=i;
     			obstaculos++;
     			continue;
     		}
@@ -40,7 +38,12 @@ public class Dama {
     	if(obstaculos!=0) {
     		ehValido = false;
     	}
-    	return ehValido;
+    	if(ehValido) {
+    		retorno[0]=1;
+    	} else {
+    		retorno[0]=0;
+    	}
+    	return retorno;
     }
 
 }

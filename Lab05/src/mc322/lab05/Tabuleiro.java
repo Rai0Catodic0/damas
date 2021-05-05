@@ -1,31 +1,30 @@
 package mc322.lab05;
 
+import java.lang.Math;
+
 public class Tabuleiro {
-	Peão peoes[][] = new Peão[8][8];
-	Dama damas[][] = new Dama[8][8];
+	Peça tabuleiro[][] = new Peça[8][8];
 	int numeroDePinos = 32;
 	Tabuleiro() {
 		for(int i=0;i<8;i++) {
 			for(int j = 0; j<8; j++) {
 				if(i>2&&i<4) {
-					peoes[i][j] = null;
+					tabuleiro[i][j] = null;
 				} else if(i==5 || i==7) {
 					if(j%2==0) {
-						peoes[i][j]=new Peão(i,j,false);
+						tabuleiro[i][j]= new Peão(i,j,false);
 					}
 				} else if (i==6 && j%2 != 0) {
-					peoes[i][j]=new Peão(i,j,false);
+					tabuleiro[i][j]=new Peão(i,j,false);
 				} else if(i==0||i==2) {
 					if(j%2!=0) {
-						peoes[i][j]=new Peão(i,j,true);
+						tabuleiro[i][j]=new Peão(i,j,true);
 					}
 				}else if(i==1 && j%2==0) {
-					peoes[i][j] = new Peão(i,j,true);
+					tabuleiro[i][j] = new Peão(i,j,true);
 				}
-				damas[i][j] = null;
 			}
 		}
-
 	}
 
 	String Apresentar() {
@@ -36,17 +35,13 @@ public class Tabuleiro {
 		for(int i=0;i<8;i++) {
 			System.out.print(numeros[i]+" ");
 			for(int j = 0; j<8; j++) {
-				if(peoes[i][j]==null && damas[i][j]==null) {
+				if(tabuleiro[i][j]==null) {
 					System.out.print("- ");
 					representacao[indice] = '-';
 					indice++;
-				} else if(peoes[i][j]!=null) {
-					System.out.print(peoes[i][j].representacao+" ");
-					representacao[indice] = peoes[i][j].representacao;
-					indice++;
-				} else if(damas[i][j]!=null) {
-					System.out.print(damas[i][j].representacao+" ");
-					representacao[indice] = damas[i][j].representacao;
+				} else {
+					System.out.print(tabuleiro[i][j].representacao+" ");
+					representacao[indice] = tabuleiro[i][j].representacao;
 					indice++;
 				}
 			}
@@ -60,15 +55,131 @@ public class Tabuleiro {
 	}
 
 	void Mover(String comando) {
+		
 		//transformar coordenadas
 		int jOrigem = comando.charAt(0)-97;
-		int iOrigem = 55-comando.charAt(1);
+		int iOrigem = 56-comando.charAt(1);
 		int jDestino = comando.charAt(3)-97;
-		int iDestino = 55-comando.charAt(4);
+		int iDestino = 56-comando.charAt(4);
 		
-		//aqui pedimos a validação do movimento para a peça envolvida
-		//fazemos o movimento e o caminho caso seja válido
+		System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
 		
+		int tamanho = Math.abs(iOrigem-iDestino); //tamanho do caminho
+		int count = 0;
+		char caminho[] = new char[tamanho];
+		
+		if(tabuleiro[iOrigem][iDestino]!=null) {
+			if(jOrigem<jDestino && iOrigem>iDestino) {
+				int i = iOrigem-1;
+				int j = jOrigem + 1;
+				//aumenta j e diminui i
+				while(count<tamanho) {
+					if(tabuleiro[i][j]==null) {
+						caminho[count]='-';
+					} else {
+						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
+							caminho[count]='X';
+						}else {
+							caminho[count]='0';
+						}
+					}
+					count++;
+					j++;
+					i--;
+				}
+				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
+				if(ehValido[0]==1) {
+					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
+					tabuleiro[iOrigem][jOrigem]= null;
+					if(ehValido[1]!=-1) { //peça capturada
+						tabuleiro[iOrigem-ehValido[1]-1][jOrigem+ehValido[1]+1] = null;
+					}
+				}
+			} else if(jOrigem<jDestino && iOrigem<iDestino) {
+				int i = iOrigem+1;
+				int j = jOrigem + 1;
+				//aumenta j e aumenta i
+				while(count<tamanho) {
+					if(tabuleiro[i][j]==null) {
+						caminho[count]='-';
+					} else {
+						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
+							caminho[count]='X';
+						}else {
+							caminho[count]='0';
+						}
+					}
+					count++;
+					j++;
+					i++;
+				}
+				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
+				if(ehValido[0]==1) {
+					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
+					tabuleiro[iOrigem][jOrigem]= null;
+					if(ehValido[1]!=-1) { //peça capturada
+						tabuleiro[iOrigem+ehValido[1]+1][jOrigem+ehValido[1]+1] = null;
+					}
+				}
+			} else if(jOrigem>jDestino && iOrigem<iDestino) {
+				int i = iOrigem+1;
+				int j = jOrigem - 1;
+				//diminui j e aumenta i
+				while(count<tamanho) {
+					if(tabuleiro[i][j]==null) {
+						caminho[count]='-';
+					} else {
+						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
+							caminho[count]='X';
+						}else {
+							caminho[count]='0';
+						}
+					}
+					count++;
+					j--;
+					i++;
+				}
+				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
+				if(ehValido[0]==1) {
+					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
+					tabuleiro[iOrigem][jOrigem]= null;
+					if(ehValido[1]!=-1) { //peça capturada
+						tabuleiro[iOrigem+ehValido[1]+1][jOrigem-ehValido[1]-1] = null;
+					}
+				}
+			} else {
+				int i = iOrigem-1;
+				int j = jOrigem-1;
+				//diminui j e diminui i
+				while(count<tamanho) {
+					if(tabuleiro[i][j]==null) {
+						caminho[count]='-';
+					} else {
+						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
+							caminho[count]='X';
+						}else {
+							caminho[count]='0';
+						}
+					}
+					count++;
+					j--;
+					i--;
+				}
+				System.out.println("helloooo");
+				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
+				if(ehValido[0]==1) {
+					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
+					tabuleiro[iOrigem][jOrigem]= null;
+					if(ehValido[1]!=-1) { //peça capturada
+						tabuleiro[iOrigem-ehValido[1]-1][jOrigem-ehValido[1]-1] = null;
+					}
+				}
+			}
+		} else {
+			//não há peça na casa, o movimento é inválido
+		}
+		
+		//System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
 	}
 
 }
