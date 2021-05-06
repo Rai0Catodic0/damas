@@ -11,7 +11,7 @@ public class Peça {
     }
     
     public int[] Mover(int iOrigem,int jOrigem, int iDestino,int jDestino,char[] caminho) {
-    	//aplicar filtro
+    	//aplicar filtro polimorfismo
     	int retorno[] = new int[2];
     	retorno[0]=-3;
     	return retorno;
