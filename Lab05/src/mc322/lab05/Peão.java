@@ -15,6 +15,15 @@ public class Peão extends Peça {
     	retorno[1] = -1;
     	int len;
     	len = caminho.length;
+    	if(len > 3){
+    		ehValido = false;
+		}
+    	if(black && iDestino < iOrigem){
+    		ehValido = false;
+		}
+    	if(!black && iOrigem < iDestino ){
+    		ehValido = false;
+		}
     	int obstaculos = 0;
     	for(int i = 0; i<len;i++){
     		if(caminho[i]=='X'){
