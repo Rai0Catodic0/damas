@@ -57,6 +57,21 @@ public class Tabuleiro {
 	void Promocao(int i, int j) {
 		tabuleiro[i][j] = new Dama(i, j, tabuleiro[i][j].black);
 	}
+	
+	char IdentificaEstado(int i, int j, int iOrigem, int jOrigem) {
+		char estadoCasa; 
+		if(tabuleiro[i][j]==null) {
+			estadoCasa='-';
+		} 
+		else if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
+			estadoCasa='X';
+		} 
+		else {
+			estadoCasa='0';
+			}
+		
+		return estadoCasa;
+	}
 
 	void Mover(String comando) {
 		
@@ -71,34 +86,22 @@ public class Tabuleiro {
 		char caminho[] = new char[tamanho];
 		
 		if(tabuleiro[iOrigem][jOrigem]!=null) {
+			
 			if(jOrigem<jDestino && iOrigem>iDestino) {
-				//System.out.println("estou aqui");
-				//System.out.println(comando);
 				int i = iOrigem-1;
 				int j = jOrigem + 1;
 				//aumenta j e diminui i
 				while(count<tamanho) {
-					if(tabuleiro[i][j]==null) {
-						caminho[count]='-';
-					} else {
-						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
-							caminho[count]='X';
-						}else {
-							caminho[count]='0';
-						}
-					}
+					caminho[count] = IdentificaEstado(i, j, iOrigem, jOrigem);
 					count++;
 					j++;
 					i--;
 				}
 				int ehValido[] = tabuleiro[iOrigem][jOrigem].Mover(iOrigem,jOrigem, iDestino,jDestino,caminho);
-				//System.out.println(new String(caminho));
 				if(ehValido[0]==1) {
 					tabuleiro[iDestino][jDestino] = tabuleiro[iOrigem][jOrigem];
 					tabuleiro[iOrigem][jOrigem]= null;
-					//System.out.println(ehValido[1]);
 					if(ehValido[1]!=-1) { //peça capturada
-						//System.out.println("vou capturar ");
 						tabuleiro[iOrigem-ehValido[1]-1][jOrigem+ehValido[1]+1] = null;
 					}
 				}
@@ -107,15 +110,7 @@ public class Tabuleiro {
 				int j = jOrigem + 1;
 				//aumenta j e aumenta i
 				while(count<tamanho) {
-					if(tabuleiro[i][j]==null) {
-						caminho[count]='-';
-					} else {
-						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
-							caminho[count]='X';
-						}else {
-							caminho[count]='0';
-						}
-					}
+					caminho[count] = IdentificaEstado(i, j, iOrigem, jOrigem);
 					count++;
 					j++;
 					i++;
@@ -133,15 +128,7 @@ public class Tabuleiro {
 				int j = jOrigem - 1;
 				//diminui j e aumenta i
 				while(count<tamanho) {
-					if(tabuleiro[i][j]==null) {
-						caminho[count]='-';
-					} else {
-						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
-							caminho[count]='X';
-						}else {
-							caminho[count]='0';
-						}
-					}
+					caminho[count] = IdentificaEstado(i, j, iOrigem, jOrigem);
 					count++;
 					j--;
 					i++;
@@ -159,15 +146,7 @@ public class Tabuleiro {
 				int j = jOrigem-1;
 				//diminui j e diminui i
 				while(count<tamanho) {
-					if(tabuleiro[i][j]==null) {
-						caminho[count]='-';
-					} else {
-						if(tabuleiro[iOrigem][jOrigem].black != tabuleiro[i][j].black) {
-							caminho[count]='X';
-						}else {
-							caminho[count]='0';
-						}
-					}
+					caminho[count] = IdentificaEstado(i, j, iOrigem, jOrigem);
 					count++;
 					j--;
 					i--;
@@ -189,12 +168,7 @@ public class Tabuleiro {
 			}
 		} else {
 			//não há peça na casa, o movimento é inválido
-			System.out.println("é null");
-			System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
-			System.out.println(tabuleiro[iOrigem][iDestino]);
 		}
-		
-		//System.out.printf("jOrigem: %d\niOrigem: %d\njDestino: %d\niDestino: %d\n", jOrigem, iOrigem, jDestino, iDestino);
 	}
 
 }

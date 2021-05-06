@@ -6,13 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class CSVReader {
+public class CSVHandling {
 	private String dataSource;
 	private String dataExport;
 	private String[] commands;
 	private String[] state;
 
-	public CSVReader() {
+	public CSVHandling() {
 		this.commands = null;
 		this.dataSource = null;
 		this.dataExport = null;
