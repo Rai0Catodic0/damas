@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 package mc322.lab05;
-=======
-package mc322.lab05; 
->>>>>>> 2da7a403d540e263f2f544d07a1cf01e99132149
-=======
-package mc322.lab05; 
->>>>>>> 2da7a403d540e263f2f544d07a1cf01e99132149
 
 public class Peão extends Peça {
     Peão(int linha, int coluna, boolean black ){
