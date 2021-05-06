@@ -23,8 +23,24 @@ public class AppDama {
 			estados[i] = dama.Apresentar();
 		}
 		String estadoFinalTabuleiro = estados[n-1];
-		///transformar em vetor de string no formato (a1_,a2b....etc) e escrever no csv
-		//String teste[3] = {"a1_","a2p", "a3B"};
+		String saida[] = new String[64];
+		char letras[] = {'a','b','c','d','e','f','g','h'};
+		char numeros[] = {'8','7','6','5','4','3','2','1'};
+		int k = 0;
+		int l = 0;
+		for(int i = 0; i < 8 ; i++){
+			for(int j = 0 ; j < 8; j++){
+				if(estadoFinalTabuleiro.charAt(k)!='\n') {
+					char estado[] = {letras[j], numeros[i], estadoFinalTabuleiro.charAt(k)};
+					saida[l] = new String(estado);
+					System.out.println(saida[l]);
+					l++;
+				}
+				k++;
+			}
+			k++;
+		}
+		csv.exportState(saida);
 		return estados;
 	}
 
