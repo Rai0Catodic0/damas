@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package mc322.lab05;
+=======
+package mc322.lab05; 
+>>>>>>> 2da7a403d540e263f2f544d07a1cf01e99132149
 
 public class Peão extends Peça {
     Peão(int linha, int coluna, boolean black ){
@@ -14,13 +18,12 @@ public class Peão extends Peça {
     	int retorno[] = new int[2];
     	retorno[1] = -1;
     	int len;
-    	len = retorno.length-1;
+    	len = caminho.length;
     	int obstaculos = 0;
     	for(int i = 0; i<len;i++){
     		if(caminho[i]=='X'){
     			retorno[1]=i;
     			obstaculos++;
-				System.out.println("captura peao");
     			continue;
 			}
     		else if(caminho[i]=='0'){
