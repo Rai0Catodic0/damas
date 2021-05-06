@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package mc322.lab05;
+=======
+package mc322.lab05; 
+>>>>>>> 2da7a403d540e263f2f544d07a1cf01e99132149
 =======
 package mc322.lab05; 
 >>>>>>> 2da7a403d540e263f2f544d07a1cf01e99132149
